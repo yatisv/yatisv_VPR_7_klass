@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВПР Информатика 7 класс — Вариант 3</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f3e6fa 0%, #e6d0f0 100%);
+            margin: 0;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .exam-container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(80, 40, 120, 0.2);
+            padding: 35px 40px;
+            border: 1px solid #c9b0e0;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-top: 0;
+            color: #4a1f6e;
+            border-left: 8px solid #8a4fc7;
+            padding-left: 25px;
+        }
+        h2 {
+            color: #6a3b9a;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            padding-left: 33px;
+            font-weight: 500;
+        }
+        .subhead {
+            font-size: 1.1rem;
+            color: #7a4fb0;
+            margin-bottom: 25px;
+            padding-left: 33px;
+        }
+        .timer-panel {
+            background: linear-gradient(145deg, #4a1f6e, #6a3b9a);
+            color: white;
+            border-radius: 60px;
+            padding: 15px 30px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .timer-display {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 6px;
+            background: #0000002e;
+            padding: 8px 25px;
+            border-radius: 60px;
+            border: 2px solid #ffd966;
+        }
+        .status-badge {
+            background: #4a1f6e;
+            color: white;
+            border-radius: 40px;
+            padding: 8px 25px;
+            font-weight: 600;
+        }
+        .name-panel {
+            background: #ede0f9;
+            border-radius: 60px;
+            padding: 15px 30px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+        .name-inputs input {
+            padding: 12px 20px;
+            border-radius: 40px;
+            border: 2px solid #aa7fc4;
+            background: white;
+            font-size: 1rem;
+            min-width: 180px;
+        }
+        .task-card {
+            background: #ffffff;
+            border: 1px solid #d6c2e8;
+            border-radius: 24px;
+            padding: 20px 28px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 10px rgba(110, 70, 150, 0.1);
+        }
+        .task-num {
+            display: inline-block;
+            background: #8a4fc7;
+            color: white;
+            font-weight: 600;
+            padding: 5px 18px;
+            border-radius: 40px;
+            margin-bottom: 15px;
+        }
+        .task-text {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #2a1040;
+            margin-bottom: 15px;
+        }
+        .binary-string {
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            background: #ede0f9;
+            padding: 10px 18px;
+            border-radius: 40px;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+        table {
+            background: #ede0f9;
+            border-collapse: collapse;
+            margin: 15px 0;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        table td, table th {
+            border: 1px solid #b89ad4;
+            padding: 8px 12px;
+            background-color: white;
+        }
+        .answer-area {
+            margin: 15px 0 5px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+        }
+        .answer-input {
+            padding: 12px 18px;
+            font-size: 1rem;
+            border: 2px solid #aa7fc4;
+            border-radius: 60px;
+            width: 260px;
+            background: white;
+        }
+        .answer-input:disabled {
+            background: #f5f0fa;
+            color: #555;
+        }
+        .file-download-block {
+            background: #ede0f9;
+            border-radius: 18px;
+            padding: 16px 22px;
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 25px;
+        }
+        .file-link {
+            background: #4a1f6e;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: 1px solid #8a4fc7;
+        }
+        .file-link:hover {
+            background: #6a3b9a;
+        }
+        .expert-badge {
+            background: #d6c2e8;
+            color: #4a1f6e;
+            padding: 4px 15px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .finish-btn-container {
+            margin: 40px 0 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .finish-exam-btn {
+            background: #b13e3e;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 800;
+            padding: 20px 60px;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #631f1f;
+            transition: 0.1s;
+        }
+        .finish-exam-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #631f1f;
+        }
+        .finish-exam-btn:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .result-modal {
+            background: #ede0f9;
+            border-radius: 50px;
+            padding: 25px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.4rem;
+            border: 4px solid #8a4fc7;
+        }
+        .image-placeholder {
+            background: #f2e8fa;
+            border: 2px dashed #aa7fc4;
+            border-radius: 24px;
+            padding: 30px 20px;
+            margin: 15px 0;
+            text-align: center;
+            color: #7a4fb0;
+            font-style: italic;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-placeholder img {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+        }
+        hr {
+            border-top: 2px dashed #c9b0e0;
+            margin: 30px 0;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .action-btn {
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .action-btn:hover {
+            transform: scale(1.05);
+        }
+        .action-btn.clear {
+            background: #6c757d;
+        }
+        .action-btn.reset {
+            background: #dc3545;
+        }
+        .action-btn.new {
+            background: #8a4fc7;
+        }
+        footer {
+            color: #7a4fb0;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="answers-vpr7-3.js"></script>
+</head>
+<body>
+<div class="exam-container" id="examContainer">
+    <h1>📘 ВПР Информатика 7 класс</h1>
+    <h2>Вариант 3</h2>
+    <div class="subhead">Задания 1-15</div>
+
+    <!-- Таймер и статус -->
+    <div class="timer-panel">
+        <div class="timer-display" id="timer">01:30:00</div>
+        <div class="status-badge" id="examStatus">⏳ Выполнение работы</div>
+    </div>
+
+    <!-- ФИО участника -->
+    <div class="name-panel" id="namePanel">
+        <div class="name-inputs">
+            <input type="text" id="surname" placeholder="Фамилия" value="" disabled>
+            <input type="text" id="name" placeholder="Имя" value="" disabled>
+        </div>
+        <div class="status-badge">Участник (заполнить поля)</div>
+    </div>
+
+    <!-- Кнопки действий -->
+    <div class="action-buttons" id="actionButtons"></div>
+
+    <!-- ========== ЗАДАНИЕ 1 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 1 (№1066)</div>
+        <div class="task-text">Выберите устройства, которые обычно находятся внутри системного блока стационарного персонального компьютера, и запишите в ответе их номера (через пробел) в порядке возрастания.<br>
+        1) блок питания <br> 2) монитор <br> 3) материнская плата <br> 4) модем <br>
+        5) вентилятор охлаждения (кулер) <br> 6) внешний звуковой адаптер <br> 7) видеокарта (дискретная) <br> 8) оперативная память</div>
+        <div class="answer-area">
+            <input class="answer-input task-input" type="text" id="ans1" placeholder="например 13578" disabled>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 2 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 2 (№53)</div>
+        <div class="task-text">В некотором каталоге хранился файл Том 1, имевший полное имя <b>D:\Литература\20 век\Том 1</b>. В этом каталоге создали подкаталог <b>Шолохов</b> и переместили в созданный подкаталог файл Том 1. Укажите номер полного имени этого файла после перемещения.</div>
+        <div class="task-text">1)  D:\Литература\20 век\Шолохов\Том 1 <br>2)  D:\Литература\Шолохов\Том 1 <br>3)  D:\Шолохов\Том 1 <br>4)  D:\Шолохов\Литература\20 век\Том 1</div>
+        <div class="answer-area">
+            <input class="answer-input task-input" type="text" id="ans2" placeholder="номер" disabled>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 3 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 3 (№135)</div>
+        <div class="task-text">Установите соответствие между расширениями и типами файлов. Запишите цифры под соответствующими буквами (например А-1 Б-1 В-1 Г-2 Д-1 Е-3 Ж-4).<br>
+        <b>Расширения:</b><br> A) mp4 <br>Б) avi <br>B) mkv <br>Г) png <br>Д) webm <br>E) wav <br>Ж) pdf<br>
+        <b>Типы файлов:</b> <br>1) видеофайл <br>2) графический документ <br>3) аудиофайл <br>4) документ</div>
+        <div class="answer-area">
+            <input class="answer-input task-input" type="text" id="ans3" placeholder="например А-1 Б-1 В-1" disabled>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 4 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 4 (№175)</div>
+        <div class="task-text">Файл pig.pdf был выложен в Интернете по адресу <b>http://mypigs.ru/pig.pdf</b>. Потом его переместили в каталог <b>work</b> на сайте <b>presentation.edu</b>, доступ к которому осуществляется по протоколу <b>ftp</b>. Имя файла не изменилось. Фрагменты адреса закодированы цифрами. Запишите последовательность цифр для нового адреса.<br>
+        Фрагменты:<br> 1) http:/ <br>2) pig <br>3) work <br>4) presentation <br>5) .edu <br>6) ftp:/ <br>7) / <br>8) .pdf <br>9) mypigs</div>
+        <div class="answer-area">
+            <input class="answer-input task-input" type="text" id="ans4" placeholder="например 6453728" disabled>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 5 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 5 (№221)</div>
+        <div class="task-text">На пикник пришли три мальчика: Артем, Борис, Виктор. Фамилии — Антонов, Белов, Воронов. В разговоре с Виктором Белов заметил, что ни у одного из них первая буква имени и фамилии не совпадают. Соотнесите имена и фамилии. Запишите цифры в порядке А, Б, В.<br>
+        <b>Имена:</b><br>A)  Артем <br>Б)  Борис <br>В)  Виктор<br>
+        <b>Фамилии:</b><br> 1)  Антонов <br>2)  Белов <br>3)  Воронов</div>
+        <div class="answer-area">
+            <input class="answer-input task-input" type="text" id="ans5" placeholder="например А-2 Б-3 В-1" disabled>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 6 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 6 (№257)</div>
+        <div class="image-placeholder"><img src="6-vpr3.png" alt="Азбука Морзе" onerror="this.parentElement.innerHTML='🖼️ Место для таблицы азбуки Морзе (ИАНГЧ)'"></div>
+       
+        <div class="task-text">От разведчика была получена шифрованная радиограмма. <div>
+		 <div class="image-placeholder"><img src="6-vpr3.1.png" alt="Азбука Морзе" onerror="this.parentElement.innerHTML='🖼️ Место для таблицы азбуки Морзе (ИАНГЧ)'"></div>
+		 <div class="task-text">При передаче было потеряно разбиение на буквы, но известно, что в радиограмме использовались только буквы: И, А, Н, Г, Ч. Определите текст радиограммы.</div>
+        <div class="answer-area">
+            <input class="answer-input task-input" type="text" id="ans6" placeholder="например АИНАН" disabled>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 7 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 7 (№292)</div>
+        <div class="task-text">Сколько изображений размером <b>1 Мбайт</b> может уместиться на Flash-карте объемом <b>32 Гбайт</b>?</div>
+        <div class="answer-area">
+            <input class="answer-input task-input" type="text" id="ans7" placeholder="число" disabled>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 8 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 8 (№1106)</div>
+        <div class="task-text">Сообщение, записанное буквами <b>128-символьного алфавита</b>, содержит <b>64</b> символов. Чему равен информационный объем этого сообщения в байтах? <i>Единицы измерения писать не нужно.</i></div>
+        <div class="answer-area">
+            <input class="answer-input task-input" type="text" id="ans8" placeholder="число" disabled>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 9 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 9 (№447)</div>
+        <div class="task-text">Скорость передачи данных через некоторое соединение равна<b> 2 048 000 бит/с</b>. Передача файла через данное соединение заняла <b>8 секунд</b>. Определите размер файла в Кбайт. <i>Единицы измерения писать не нужно.</i></div>
+        <div class="answer-area">
+            <input class="answer-input task-input" type="text" id="ans9" placeholder="число" disabled>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 10 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 10 (№1076)</div>
+        <div class="task-text">В кодировке Win-1251 каждый символ кодируется <b>8 битами</b>. Определите информационный объём в байтах предложения:<br>
+        <b>Цыплят по осени считают.</b> <i>Единицы измерения писать не нужно.</i></div>
+        <div class="answer-area">
+            <input class="answer-input task-input" type="text" id="ans10" placeholder="число" disabled>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 11 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 11 (№418)</div>
+        <div class="task-text">Какой цвет в цветовой модели RGB кодируется как <b>255 0 255</b>?<br>
+        1) Зеленый <br>2) Пурпурный <br>3) Коричневый <br>4) Голубой</div>
+        <div class="answer-area">
+            <input class="answer-input task-input" type="text" id="ans11" placeholder="номер ответа" disabled>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 12 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 12 (№1079)</div>
+        <div class="image-placeholder"><img src="12-vpr3.png" alt="Текст" onerror="this.parentElement.innerHTML='🖼️ Место для текста'"></div>
+        <div class="task-text">Выберите свойства абзацев, присутствующие в данном тексте. В ответе запишите номера свойств в порядке возрастания.<br>
+        1) Отступ первой строки <br>2) Выступ первой строки <br>3) Отступ слева <br>4) Отступ справа<br>
+        5) Выравнивание по левому краю <br>6) Выравнивание по правому краю <br>7) Выравнивание по центру <br>8) Выравнивание по ширине</div>
+        <div class="answer-area">
+            <input class="answer-input task-input" type="text" id="ans12" placeholder="например 127" disabled>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 13 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 13 (№1085)</div>
+        <div class="file-download-block">
+            <span>📁 Файл с текстом романа «Преступление и наказание»</span>
+            <a class="file-link" href="13.rtf" target="_blank" onclick="return confirm('Скачать файл?');">⬇️ Задание 13.zip</a>
+        </div>
+        <div class="task-text">В романе Ф. М. Достоевского «Преступление и наказание» главный герой Раскольников дает характеристику некоему персонажу: «очень хороший человек». С помощью поисковых средств текстового редактора выясните фамилию данного персонажа. Ответ запишите в именительном падеже.</div>
+        <div class="answer-area">
+            <input class="answer-input task-input" type="text" id="ans13" placeholder="фамилия" disabled>
+            <span class="expert-badge">эксперт</span>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 14 (текстовый документ) ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 14 (№512) — текстовый документ</div>
+        <div class="image-placeholder"><img src="14-vpr3.png" alt="Образец текста про деньги" onerror="this.parentElement.innerHTML='🖼️ Место для образца оформления'"></div>
+        <div class="task-text">Создайте в текстовом редакторе документ и напишите в нем следующий текст, точно воспроизведя все оформление текста, имеющееся в образце.
+
+Данный текст должен быть набран шрифтом размером 14 пунктов обычного начертания.<br> Отступ первой строки первого абзаца основного текста  — 1 см. Расстояние между строками текста не менее одинарного, но не более полуторного междустрочного интервала.<br>
+
+Основной текст выровнен по ширине; в ячейках первого столбца таблицы, кроме первой строки таблицы, применено выравнивание по левому краю, в ячейках второго столбца и первой строки таблицы  — выравнивание по центру. В основном тексте и таблице есть слова, выделенные полужирным, курсивным шрифтом и подчеркиванием. Ширина таблицы меньше ширины основного текста. Таблица выровнена на странице
+
+по центру горизонтали.<br>
+
+При этом допустимо, чтобы ширина Вашего текста отличалась от ширины текста в примере, поскольку ширина текста зависит от размеров страницы и полей. В этом случае разбиение текста на строки должно соответствовать стандартной ширине абзаца.
+
+Интервал между текстом и таблицей не менее 12 пунктов, но не более 24 пунктов.</div>
+        <div style="background:#f5f5f5; padding:15px; border-radius:12px; margin:10px 0;">
+           
+        </div>
+        <div class="answer-area">
+            <input class="answer-input" id="ans14" placeholder="имя файла .docx" disabled>
+            <span class="expert-badge">эксперт</span>
+        </div>
+    </div>
+
+    <!-- ========== ЗАДАНИЕ 15 ========== -->
+    <div class="task-card">
+        <div class="task-num">Задание 15 (№1096)</div>
+        <div class="image-placeholder"><img src="15-vpr3.png" alt="Образец рисунка" onerror="this.parentElement.innerHTML='🖼️ Место для образца рисунка: 1 треугольник (равнобедренный), 1 высота, 1 квадрат, 2 дуги, 2 прямые, 3 текстовых фрагмента'"></div>
+        <div class="task-text">Нарисуйте в любом графическом редакторе или редакторе презентаций изображение по образцу: 1 треугольник (равнобедренный), 1 высота треугольника, 1 квадрат, 2 дуги, 2 прямые, 3 текстовых фрагмента.</div>
+        <div class="answer-area">
+            <input class="answer-input" id="ans15" placeholder="файл изображения" disabled>
+            <span class="expert-badge">эксперт</span>
+        </div>
+    </div>
+
+    <!-- КНОПКА ЗАВЕРШЕНИЯ -->
+    <div class="finish-btn-container">
+        <button class="finish-exam-btn" id="finishExamBtn" style="opacity:0.5; cursor:not-allowed;" disabled>✅ ЗАВЕРШИТЬ РАБОТУ</button>
+    </div>
+
+    <!-- КНОПКИ АНАЛИТИКИ -->
+    <div style="text-align: center; margin: 20px 0; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <button id="showAnalyticsBtn" style="background: #8a4fc7; color: white; border: none; padding: 10px 20px; border-radius: 40px; cursor: pointer; font-weight: 600;">📊 Показать аналитику</button>
+        <button id="exportAnalyticsBtn" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 40px; cursor: pointer; font-weight: 600;">📥 Экспорт в CSV</button>
+        <button id="clearAnalyticsBtn" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 40px; cursor: pointer; font-weight: 600;">🗑️ Очистить историю</button>
+    </div>
+
+    <!-- РЕЗУЛЬТАТ -->
+    <div id="resultArea"></div>
+    
+    <!-- Модальное окно аналитики -->
+    <div id="analyticsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+        <div style="background: white; margin: 50px auto; max-width: 900px; max-height: 80vh; overflow-y: auto; border-radius: 32px; padding: 30px;">
+            <h2 style="color: #8a4fc7;">📊 История выполнения</h2>
+            <div id="analyticsContent"></div>
+            <button onclick="document.getElementById('analyticsModal').style.display='none'" style="background: #6c757d; color: white; border: none; padding: 10px 30px; border-radius: 40px; margin-top: 20px; cursor: pointer;">Закрыть</button>
+        </div>
+    </div>
+    
+    <hr>
+    <footer>✅ ВПР Информатика 7 класс • Вариант 3<br>
+    МКОУ Северная средняя школа</footer>
+</div>
+
+<script>
+    (function() {
+        // ========== ЭТАЛОННЫЕ ОТВЕТЫ - ИЗ ВНЕШНЕГО ФАЙЛА ==========
+        let correct = {};
+        
+        // Проверяем, доступна ли функция из внешнего файла
+        if (typeof window.getCorrectAnswers === 'function') {
+            correct = window.getCorrectAnswers();
+            console.log('Ответы загружены из внешнего файла');
+        } else {
+            alert('Ошибка загрузки конфигурации экзамена. Пожалуйста, обратитесь к преподавателю.');
+            document.querySelectorAll('input, button').forEach(el => el.disabled = true);
+            return;
+        }
+
+        let examStartTime = Date.now();
+        let resetCount = 0;
+        let taskResults = {};
+        let examCompleted = false;
+        const currentVariant = 3;
+
+        let examFinished = false;
+        
+        const timerEl = document.getElementById('timer');
+        const finishBtn = document.getElementById('finishExamBtn');
+        const resultDiv = document.getElementById('resultArea');
+        const statusBadge = document.getElementById('examStatus');
+        const surnameInput = document.getElementById('surname');
+        const nameInput = document.getElementById('name');
+
+        const allInputs = document.querySelectorAll('.task-input, #ans14, #ans15');
+        const fileLinks = document.querySelectorAll('.file-link');
+
+        const EXAM_TIME = 5400; // 1:30 (90 минут)
+        let timeLeft = EXAM_TIME;
+        let timerInterval = null;
+
+        // ========== АНАЛИТИКА ==========
+        const STORAGE_KEY = 'vpr_analytics';
+        
+        function loadAnalytics() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            return data ? JSON.parse(data) : [];
+        }
+        
+        function saveAnalytics(analytics) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(analytics));
+        }
+        
+        function addExamResult(result) {
+            const analytics = loadAnalytics();
+            analytics.push(result);
+            saveAnalytics(analytics);
+        }
+        
+        function getAnalyticsStats() {
+            const analytics = loadAnalytics();
+            return {
+                total: analytics.length,
+                averageScore: analytics.reduce((sum, item) => sum + item.correctCount, 0) / analytics.length || 0
+            };
+        }
+        
+        function clearAnalytics() {
+            if (confirm('Очистить всю историю экзаменов?')) {
+                localStorage.removeItem(STORAGE_KEY);
+                alert('История очищена');
+                if (document.getElementById('analyticsModal').style.display === 'block') {
+                    showAnalytics();
+                }
+            }
+        }
+        
+        function exportAnalyticsToCSV() {
+            const analytics = loadAnalytics();
+            if (analytics.length === 0) {
+                alert('Нет данных для экспорта');
+                return;
+            }
+            
+            let csv = 'Дата,Фамилия,Имя,Время,Перезагрузки,Правильно,Всего,Оценка,';
+            for (let i = 1; i <= 15; i++) {
+                csv += `Задание ${i},`;
+            }
+            csv += '\n';
+            
+            analytics.forEach(item => {
+                csv += `${item.date},${item.surname},${item.name},${item.timeSpent},${item.resetCount || 0},${item.correctCount},${item.maxScore},${item.grade},`;
+                for (let i = 1; i <= 15; i++) {
+                    csv += `${item.taskResults[i] || 0},`;
+                }
+                csv += '\n';
+            });
+            
+            const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `vpr_analytics_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+        }
+        
+        function showAnalytics() {
+            const analytics = loadAnalytics();
+            const modal = document.getElementById('analyticsModal');
+            const content = document.getElementById('analyticsContent');
+            
+            if (analytics.length === 0) {
+                content.innerHTML = '<p style="text-align: center; color: #666;">Нет данных об экзаменах</p>';
+            } else {
+                let html = '<table style="width:100%; border-collapse: collapse;">';
+                html += '<tr style="background: #8a4fc7; color: white;">';
+                html += '<th>№</th><th>Дата</th><th>Фамилия</th><th>Имя</th><th>Время</th><th>Перезагрузки</th><th>Правильно</th><th>Оценка</th></tr>';
+                
+                analytics.slice().reverse().forEach((item, index) => {
+                    html += `<tr style="border-bottom: 1px solid #ddd; ${index % 2 === 0 ? 'background: #f9f9f9;' : ''}">`;
+                    html += `<td style="padding: 8px;">${index + 1}</td>`;
+                    html += `<td style="padding: 8px;">${item.date}</td>`;
+                    html += `<td style="padding: 8px;">${item.surname}</td>`;
+                    html += `<td style="padding: 8px;">${item.name}</td>`;
+                    html += `<td style="padding: 8px;">${item.timeSpent}</td>`;
+                    html += `<td style="padding: 8px;">${item.resetCount || 0}</td>`;
+                    html += `<td style="padding: 8px;">${item.correctCount}/${item.maxScore}</td>`;
+                    html += `<td style="padding: 8px; font-weight: bold;">${item.grade}</td>`;
+                    html += '</tr>';
+                });
+                
+                html += '</table>';
+                
+                const stats = getAnalyticsStats();
+                html += `<div style="margin-top: 20px; padding: 15px; background: #ede0f9; border-radius: 16px;">
+                    <p><strong>Всего попыток:</strong> ${stats.total}</p>
+                    <p><strong>Средний балл:</strong> ${(stats.averageScore || 0).toFixed(2)}</p>
+                </div>`;
+                
+                content.innerHTML = html;
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function loadTimer() {
+            const savedEnd = localStorage.getItem('vprExamEnd');
+            if (savedEnd) {
+                const remaining = Math.max(0, Math.floor((parseInt(savedEnd) - Date.now()) / 1000));
+                timeLeft = remaining > 0 ? remaining : 0;
+            } else {
+                localStorage.setItem('vprExamEnd', Date.now() + EXAM_TIME * 1000);
+            }
+        }
+
+        function updateTimerDisplay() {
+            const hrs = Math.floor(timeLeft / 3600);
+            const mins = Math.floor((timeLeft % 3600) / 60);
+            const secs = timeLeft % 60;
+            timerEl.textContent = `${hrs.toString().padStart(2,'0')}:${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
+        }
+
+        function blockAllInputs(disabled = true) {
+            allInputs.forEach(inp => inp.disabled = disabled);
+            fileLinks.forEach(link => link.style.pointerEvents = disabled ? 'none' : 'auto');
+            surnameInput.disabled = disabled;
+            nameInput.disabled = disabled;
+        }
+
+        function areFirst10Answered() {
+            for (let i = 1; i <= 10; i++) {
+                const inp = document.getElementById(`ans${i}`);
+                if (!inp || !inp.value || inp.value.trim() === '') {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function updateFinishButtonState() {
+            if (examFinished) {
+                finishBtn.disabled = true;
+                return;
+            }
+            
+            if (areFirst10Answered()) {
+                finishBtn.disabled = false;
+                finishBtn.style.opacity = '1';
+                finishBtn.style.cursor = 'pointer';
+            } else {
+                finishBtn.disabled = true;
+                finishBtn.style.opacity = '0.5';
+                finishBtn.style.cursor = 'not-allowed';
+            }
+        }
+
+        function saveToAnalytics() {
+            if (!examCompleted) return;
+            
+            const timeSpent = Math.floor((Date.now() - examStartTime) / 1000);
+            const minutes = Math.floor(timeSpent / 60);
+            const seconds = timeSpent % 60;
+            const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            let correctCount = 0;
+            taskResults = {};
+            
+            for (let i = 1; i <= 13; i++) {
+                const inp = document.getElementById(`ans${i}`);
+                if (inp && inp.value) {
+                    let user = inp.value.trim().replace(/\s+/g, ' ').toLowerCase();
+                    let corr = correct[`ans${i}`] ? correct[`ans${i}`].toLowerCase() : '';
+                    if (user === corr) {
+                        correctCount++;
+                        taskResults[i] = 1;
+                    } else {
+                        taskResults[i] = 0;
+                    }
+                } else {
+                    taskResults[i] = 0;
+                }
+            }
+            
+            const maxScore = 13;
+            let grade = '2';
+            if (correctCount >= 5 && correctCount <= 7) grade = '3';
+            else if (correctCount >= 8 && correctCount <= 10) grade = '4';
+            else if (correctCount >= 11) grade = '5';
+            
+            const result = {
+                date: new Date().toLocaleString('ru-RU'),
+                surname: surnameInput.value.trim() || 'Не указано',
+                name: nameInput.value.trim() || 'Не указано',
+                variant: currentVariant,
+                timeSpent: timeString,
+                completed: true,
+                resetCount: resetCount,
+                correctCount: correctCount,
+                maxScore: maxScore,
+                grade: grade,
+                taskResults: taskResults
+            };
+            
+            addExamResult(result);
+        }
+
+        function newStudent() {
+            if (confirm('Начать экзамен для нового ученика?')) {
+                resetCount++;
+                
+                if (examCompleted) {
+                    saveToAnalytics();
+                }
+                
+                allInputs.forEach(inp => { if (inp) inp.value = ''; });
+                allInputs.forEach(inp => {
+                    const id = inp.id;
+                    if (id) localStorage.removeItem(`vpr_ans_${id}`);
+                });
+                if (resultDiv) resultDiv.innerHTML = '';
+                
+                clearInterval(timerInterval);
+                timeLeft = EXAM_TIME;
+                updateTimerDisplay();
+                localStorage.setItem('vprExamEnd', Date.now() + EXAM_TIME * 1000);
+                
+                timerInterval = setInterval(() => {
+                    if (examFinished) return;
+                    timeLeft--;
+                    updateTimerDisplay();
+                    localStorage.setItem('vprExamEnd', Date.now() + timeLeft * 1000);
+                    if (timeLeft <= 0) finishExam();
+                }, 1000);
+                
+                examFinished = false;
+                examCompleted = false;
+                taskResults = {};
+                examStartTime = Date.now();
+                
+                blockAllInputs(false);
+                updateFinishButtonState();
+                statusBadge.innerText = '⏳ Выполняем работу';
+            }
+        }
+
+        function clearAnswers() {
+            if (examFinished) {
+                alert('Экзамен уже завершён');
+                return;
+            }
+            if (confirm('Очистить все ответы?')) {
+                allInputs.forEach(inp => { if (inp) inp.value = ''; });
+                allInputs.forEach(inp => {
+                    const id = inp.id;
+                    if (id) localStorage.removeItem(`vpr_ans_${id}`);
+                });
+                if (resultDiv) resultDiv.innerHTML = '';
+                updateFinishButtonState();
+            }
+        }
+
+        function resetExam() {
+            if (confirm('Сбросить экзамен?')) {
+                resetCount++;
+                
+                allInputs.forEach(inp => { if (inp) inp.value = ''; });
+                localStorage.clear();
+                if (resultDiv) resultDiv.innerHTML = '';
+                
+                clearInterval(timerInterval);
+                timeLeft = EXAM_TIME;
+                updateTimerDisplay();
+                localStorage.setItem('vprExamEnd', Date.now() + EXAM_TIME * 1000);
+                
+                timerInterval = setInterval(() => {
+                    if (examFinished) return;
+                    timeLeft--;
+                    updateTimerDisplay();
+                    localStorage.setItem('vprExamEnd', Date.now() + timeLeft * 1000);
+                    if (timeLeft <= 0) finishExam();
+                }, 1000);
+                
+                examFinished = false;
+                examCompleted = false;
+                taskResults = {};
+                examStartTime = Date.now();
+                
+                blockAllInputs(false);
+                updateFinishButtonState();
+                statusBadge.innerText = '⏳ Выполняем работу';
+            }
+        }
+
+        const actionDiv = document.getElementById('actionButtons');
+        if (actionDiv) {
+            const newBtn = document.createElement('button');
+            newBtn.className = 'action-btn new';
+            newBtn.textContent = '👤 Новый ученик';
+            newBtn.onclick = newStudent;
+            
+            const clearBtn = document.createElement('button');
+            clearBtn.className = 'action-btn clear';
+            clearBtn.textContent = '🗑️ Очистить ответы';
+            clearBtn.onclick = clearAnswers;
+            
+            const resetBtn = document.createElement('button');
+            resetBtn.className = 'action-btn reset';
+            resetBtn.textContent = '🔄 новая работа';
+            resetBtn.onclick = resetExam;
+            
+            actionDiv.appendChild(newBtn);
+            actionDiv.appendChild(clearBtn);
+            actionDiv.appendChild(resetBtn);
+        }
+
+        document.getElementById('showAnalyticsBtn').addEventListener('click', showAnalytics);
+        document.getElementById('exportAnalyticsBtn').addEventListener('click', exportAnalyticsToCSV);
+        document.getElementById('clearAnalyticsBtn').addEventListener('click', clearAnalytics);
+
+        function showResult() {
+            let correctCount = 0;
+            
+            for (let i = 1; i <= 13; i++) {
+                const inp = document.getElementById(`ans${i}`);
+                if (inp && inp.value) {
+                    let user = inp.value.trim().replace(/\s+/g, ' ').toLowerCase();
+                    let corr = correct[`ans${i}`].toLowerCase();
+                    if (user === corr) correctCount++;
+                }
+            }
+
+            const maxScore = 13;
+            let grade = '2';
+            if (correctCount >= 5 && correctCount <= 7) grade = '3';
+            else if (correctCount >= 8 && correctCount <= 10) grade = '4';
+            else if (correctCount >= 11) grade = '5';
+
+            const fullName = `${surnameInput.value.trim()} ${nameInput.value.trim()}`.trim() || 'Участник';
+
+            resultDiv.innerHTML = `
+                <div class="result-modal">
+                    <h2>📋 РЕЗУЛЬТАТ ВПР — ВАРИАНТ 3</h2>
+                    <p style="font-size:1.8rem;">${fullName}</p>
+                    <p>Задания 1-13: <strong>${correctCount} из ${maxScore}</strong></p>
+                    <p style="font-size:2rem; background:#8a4fc7; color:white; display:inline-block; padding:10px 40px; border-radius:60px;">ОЦЕНКА: ${grade}</p>
+                    <p>🗂️ Задания 14-15 проверяются экспертом.</p>
+                </div>
+            `;
+        }
+
+        function finishExam() {
+            if (examFinished) return;
+            
+            if (!areFirst10Answered()) {
+                alert('Необходимо ответить на первые 10 заданий!');
+                return;
+            }
+            
+            examCompleted = true;
+            saveToAnalytics();
+            
+            examFinished = true;
+            clearInterval(timerInterval);
+            localStorage.removeItem('vprExamEnd');
+            blockAllInputs(true);
+            finishBtn.disabled = true;
+            statusBadge.innerText = '⏹ Работа завершёна';
+            showResult();
+        }
+
+        function initExam() {
+            loadTimer();
+            
+            if (timeLeft <= 0) {
+                localStorage.clear();
+                timeLeft = EXAM_TIME;
+                localStorage.setItem('vprExamEnd', Date.now() + EXAM_TIME * 1000);
+            }
+            
+            examFinished = false;
+            examCompleted = false;
+            blockAllInputs(false);
+            finishBtn.disabled = true;
+            finishBtn.style.opacity = '0.5';
+            finishBtn.style.cursor = 'not-allowed';
+            statusBadge.innerText = '⏳ Выполняем работу';
+            updateTimerDisplay();
+
+            timerInterval = setInterval(() => {
+                if (examFinished) return;
+                timeLeft--;
+                updateTimerDisplay();
+                localStorage.setItem('vprExamEnd', Date.now() + timeLeft * 1000);
+                if (timeLeft <= 0) finishExam();
+            }, 1000);
+        }
+
+        function loadAnswers() {
+            const savedEnd = localStorage.getItem('vprExamEnd');
+            if (savedEnd) {
+                const remaining = Math.max(0, Math.floor((parseInt(savedEnd) - Date.now()) / 1000));
+                if (remaining > 0) {
+                    allInputs.forEach(inp => {
+                        const id = inp.id;
+                        if (id) {
+                            const saved = localStorage.getItem(`vpr_ans_${id}`);
+                            if (saved) inp.value = saved;
+                        }
+                    });
+                }
+            }
+            setTimeout(updateFinishButtonState, 100);
+        }
+        
+        function saveAnswers() {
+            if (examFinished) return;
+            allInputs.forEach(inp => {
+                const id = inp.id;
+                if (id) localStorage.setItem(`vpr_ans_${id}`, inp.value);
+            });
+            updateFinishButtonState();
+        }
+        
+        allInputs.forEach(inp => inp.addEventListener('input', saveAnswers));
+
+        finishBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!areFirst10Answered()) {
+                alert('Необходимо ответить на первые 10 заданий!');
+                return;
+            }
+            if (confirm('Завершить экзамен?')) {
+                finishExam();
+            }
+        });
+
+        loadAnswers();
+        initExam();
+        
+        window.addEventListener('beforeunload', () => saveAnswers());
+    })();
+</script>
+</body>
+</html>
